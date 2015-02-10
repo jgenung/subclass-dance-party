@@ -1,3 +1,21 @@
+var BlinkyDancer = function(top, left, timeBetweenSteps){
+  // calling the parent constructor function in the context of BlinkyDancer
+  Dancer.call(this, top, left, timeBetweenSteps);
+};
+
+BlinkyDancer.prototype = Object.create(Dancer.prototype);
+BlinkyDancer.prototype.constructor = BlinkyDancer;
+
+BlinkyDancer.prototype.step = function(timeBetweenSteps){
+  // call the old version of step at the beginning of any call to this new version of step
+  Dancer.prototype.step.call(this, timeBetweenSteps);
+  this.$node.toggle();
+};
+
+  
+
+
+/*
 var makeBlinkyDancer = function(top, left, timeBetweenSteps){
   var blinkyDancer = makeDancer(top, left, timeBetweenSteps);
 
@@ -15,5 +33,6 @@ var makeBlinkyDancer = function(top, left, timeBetweenSteps){
     blinkyDancer.$node.toggle();
   };
 
-  return blinkyDancer;
-};
+  return blinkyDancer;*/
+
+  // var blinky1 = new BlinkyDancer(top, left, 5000)
