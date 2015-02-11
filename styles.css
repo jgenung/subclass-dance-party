@@ -3,8 +3,10 @@ body, html{
 }
 body{
   margin: 0px;
-  background-color:#444;
+  background-image: url('http://kitairu.net/images/products/products_109323_ee4d71964d3c32a171e1992269d9bea9.jpeg');
   font-size: 18px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 body, a:link, a:visited, a:active{
   color: lightblue;
@@ -24,4 +26,7 @@ body, a:link, a:visited, a:active{
   border:10px solid red;
   border-radius:10px;    
   position:absolute;
+}
+.blue{
+  border-color: blue; 
 }

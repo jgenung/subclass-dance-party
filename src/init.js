@@ -17,17 +17,39 @@ $(document).ready(function(){
      */
     var dancerMakerFunctionName = $(this).data("dancer-maker-function-name");
 
-    // get the maker function for the kind of dancer we're supposed to make
     var dancerMakerFunction = window[dancerMakerFunctionName];
-
-    // make a dancer with a random position
 
     var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
       Math.random() * 1000
     );
+    dancers.push(dancer.$node);
     $('body').append(dancer.$node);
   });
-});
 
+
+  $('.lineUp').on('click', function(event){
+    for (var i = 0; i < dancers.length; i++){
+      dancers[i].animate({left:0}, 'slow');
+    }
+  });
+
+  $('.interact').on('click', function(event){
+    for(var i = 0; i < dancers.length; i++){
+      if(i % 2 === 0){
+        var temp = dancers[i].offset().top;
+        var tempLeft = dancers[i].offset().left;
+        dancers[i].css({top: dancers[i+1].offset().top, left: dancers[i+1].offset().left}, 'slow');
+        dancers[i+1].css({top: temp, left: tempLeft}, 'slow');
+      }
+    }
+  });
+
+  $('body').on('mouseover', '.dancer', function(){
+     $(this).css({borderColor: "blue"}).mouseleave(function(){
+         $(this).css({borderColor: "green"});
+     });
+  });
+
+});
